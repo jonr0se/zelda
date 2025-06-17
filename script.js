@@ -1,34 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const shrineList = [
-    'Owa Daim Shrine',
-    'Keh Namut Shrine',
-    'Ja Baij Shrine',
-    'Oman Au Shrine',
-    'Kaam Ya\'tak Shrine',
-    'Zalta Wa Shrine',
-    'Shae Mo\'sah Shrine',
-    'Rin Oyaa Shrine',
-    'Daqo Chisay Shrine'
-  ];
+  const title = document.querySelector('h1');
+  let pulse = 0;
 
-  const input = document.getElementById('shrineSearch');
-  const list = document.getElementById('shrineList');
-
-  function renderList(filtered) {
-    list.innerHTML = '';
-    filtered.forEach(name => {
-      const li = document.createElement('li');
-      li.textContent = name;
-      list.appendChild(li);
-    });
-  }
-
-  input.addEventListener('input', () => {
-    const filtered = shrineList.filter(name =>
-      name.toLowerCase().includes(input.value.toLowerCase())
-    );
-    renderList(filtered);
-  });
-
-  renderList(shrineList);
+  setInterval(() => {
+    pulse = (pulse + 1) % 100;
+    const glow = 10 + 10 * Math.sin(pulse / 10);
+    title.style.textShadow = `0 0 ${glow}px #00f0ff`;
+  }, 100);
 });
